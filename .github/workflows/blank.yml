@@ -27,6 +27,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         env:
+          Sour: ${{ inputs.source }}
+          Dest: ${{ inputs.destination }}
           INDIGO_IMAGE_TAG: "${{ inputs.source != 'None' &&  inputs.destination || '' }}"
         run:
           echo ${INDIGO_IMAGE_TAG}
+          echo ${sour}
+          echo ${dest}
