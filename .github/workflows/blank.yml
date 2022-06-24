@@ -14,7 +14,7 @@ on:
       destination:
         description: The environment you are deploying to
         type: string
-        required: false
+        default: preqa
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -26,5 +26,7 @@ jobs:
     steps:
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        INDIGO_IMAGE_TAG: "${{ inputs.source != 'None' &&  inputs.destination || '' }}"
-        run: echo ${INDIGO_IMAGE_TAG}
+        env:
+          INDIGO_IMAGE_TAG: "${{ inputs.source != 'None' &&  inputs.destination || '' }}"
+        run:
+          echo ${INDIGO_IMAGE_TAG}
